@@ -1,6 +1,7 @@
 """
 健壮版的猫狗分类 Web 服务器
 添加更好的错误处理和日志记录
+支持.zip格式的模型文件
 """
 
 from flask import Flask, request, jsonify, send_from_directory
@@ -14,6 +15,8 @@ import os
 import numpy as np
 import traceback
 import logging
+import zipfile
+import tempfile
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)
@@ -25,7 +28,7 @@ CORS(app)
 # 支持的模型版本
 MODEL_VERSIONS = {
     'improved': {
-        'path': 'cat_dog_model.pth',  # 相对于根目录
+        'path': 'cat_dog_model.zip',  # 相对于根目录
         'arch': 'resnet50',
         'description': '改进模型（ResNet50）'
     }
@@ -67,8 +70,26 @@ def load_model(version='improved'):
         return False
     
     try:
-        # 加载模型检查点
-        checkpoint = torch.load(absolute_path, map_location=device)
+        # 如果是.zip文件，先解压
+        if model_path.endswith('.zip'):
+            logger.info("检测到.zip文件，正在解压...")
+            with zipfile.ZipFile(absolute_path, 'r') as zip_ref:
+                # 创建临时目录
+                temp_dir = tempfile.mkdtemp()
+                zip_ref.extractall(temp_dir)
+                
+                # 查找.pth文件
+                pth_files = [f for f in os.listdir(temp_dir) if f.endswith('.pth')]
+                if not pth_files:
+                    logger.error("在.zip文件中未找到.pth模型文件")
+                    return False
+                
+                pth_file = os.path.join(temp_dir, pth_files[0])
+                logger.info(f"找到模型文件: {pth_file}")
+                checkpoint = torch.load(pth_file, map_location=device)
+        else:
+            # 直接加载.pth文件
+            checkpoint = torch.load(absolute_path, map_location=device)
         
         # 根据架构创建模型
         if model_info['arch'] == 'resnet50':
