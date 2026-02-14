@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫狗识别器 - 增强版</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .suggestion {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            color: #856404;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .uncertain-result {
+            color: #dc3545;
+        }
+        
+        .certain-result {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐱 智能猫狗识别器 🐶</h1>
+        <p class="subtitle">上传图片，智能识别猫、狗或非猫狗图片</p>
+        <p class="info-text">使用99.39%准确率的改进模型，能识别非猫狗图片</p>
+
+        <!-- 拖放区域 -->
+        <div id="dropZone" class="drop-zone">
+            <div class="drop-zone-content">
+                <svg class="upload-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <p>拖拽图片到这里</p>
+                <p class="or-text">或者</p>
+                <button class="select-btn" onclick="document.getElementById('fileInput').click()">选择文件</button>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            </div>
+        </div>
+
+        <!-- 图片预览区域 -->
+        <div id="previewArea" class="preview-area" style="display: none;">
+            <div class="preview-container">
+                <img id="previewImage" src="" alt="预览图片">
+                <button class="remove-btn" onclick="removeImage()">&times;</button>
+            </div>
+        </div>
+
+        <!-- 结果显示区域 -->
+        <div id="resultArea" class="result-area" style="display: none;">
+            <h2>识别结果</h2>
+            <div class="result-content">
+                <div class="result-main">
+                    <span class="result-emoji" id="resultEmoji"></span>
+                    <span class="result-label" id="resultLabel"></span>
+                </div>
+                <div class="result-confidence">
+                    <span>置信度: <span id="confidenceValue">0</span>%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="confidenceBar"></div>
+                    </div>
+                </div>
+                <div class="probabilities">
+                    <div class="prob-item">
+                        <span class="prob-label">🐱 猫:</span>
+                        <span class="prob-value" id="catProb">0%</span>
+                    </div>
+                    <div class="prob-item">
+                        <span class="prob-label">🐶 狗:</span>
+                        <span class="prob-value" id="dogProb">0%</span>
+                    </div>
+                </div>
+                
+                <!-- 建议区域 -->
+                <div id="suggestionText" class="suggestion"></div>
+            </div>
+        </div>
+
+        <!-- 加载中 -->
+        <div id="loadingArea" class="loading-area" style="display: none;">
+            <div class="spinner"></div>
+            <p>正在识别中...</p>
+        </div>
+        
+        <!-- 模型信息 -->
+        <div class="model-info">
+            <p>当前模型: <strong>改进模型（ResNet50）</strong> | 验证准确率: <strong>99.39%</strong></p>
+            <p class="info-note">注: 模型能识别非猫狗图片，当置信度低于85%或特征不明确时会提示</p>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

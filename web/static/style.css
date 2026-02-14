@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* 拖放区域 */
+.drop-zone {
+    border: 3px dashed #ddd;
+    border-radius: 16px;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.drop-zone-content p {
+    color: #666;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.or-text {
+    font-size: 12px;
+    color: #999;
+}
+
+.upload-icon {
+    color: #ccc;
+    transition: all 0.3s ease;
+}
+
+.drop-zone:hover .upload-icon {
+    color: #667eea;
+}
+
+/* 选择按钮 */
+.select-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.select-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* 图片预览 */
+.preview-area {
+    margin-bottom: 20px;
+}
+
+.preview-container {
+    position: relative;
+    display: inline-block;
+}
+
+#previewImage {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 12px;
+    display: block;
+}
+
+.remove-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ff4757;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+    background: #ff3838;
+    transform: scale(1.1);
+}
+
+/* 结果区域 */
+.result-area {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    border-radius: 16px;
+    padding: 30px;
+    margin-top: 20px;
+}
+
+.result-area h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.result-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.result-emoji {
+    font-size: 48px;
+    min-width: 48px;
+}
+
+.result-label {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+}
+
+.result-confidence {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+#confidenceValue {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.progress-bar-container {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    height: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.probabilities {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.prob-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.prob-label {
+    font-size: 14px;
+    color: #555;
+}
+
+.prob-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 加载中 */
+.loading-area {
+    margin-top: 30px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-area p {
+    color: #666;
+    font-size: 14px;
+}

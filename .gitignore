@@ -1,0 +1,80 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Dataset files (large)
+datasets/
+*.pth
+*.pkl
+*.h5
+*.hdf5
+
+# Model files (except the main one)
+!cat_dog_model.pth
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+*.backup
+
+# Large files
+*.tar.gz
+*.zip
+*.7z
+*.rar
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Training scripts (if not needed for deployment)
+train_*.py
+prepare_*.py
+
+# Windows
+desktop.ini
