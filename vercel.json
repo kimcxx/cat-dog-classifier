@@ -13,5 +13,10 @@
   ],
   "env": {
     "PYTHONPATH": "."
+  },
+  "functions": {
+    "api/index.py": {
+      "runtime": "python3.11"
+    }
   }
 }

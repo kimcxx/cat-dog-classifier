@@ -1,0 +1,5 @@
+# Vercel最小化依赖 - 兼容Python 3.11/3.12
+Flask==2.3.3
+flask-cors==4.0.0
+Pillow==10.1.0
+numpy==1.24.3

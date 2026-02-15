@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cat-dog-classifier"
+version = "1.0.0"
+description = "基于深度学习的猫狗识别Web应用"
+authors = [{name = "kimcxx"}]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "Flask>=3.0.0",
+    "flask-cors>=4.0.0",
+    "Pillow>=10.1.0",
+    "numpy>=1.26.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "torch>=2.1.0",
+    "torchvision>=0.16.0",
+]
+
+[tool.setuptools]
+packages = ["web", "api"]
+
+[tool.setuptools.package-dir]
+"" = "src"
