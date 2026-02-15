@@ -1,0 +1,46 @@
+# 忽略开发文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# 忽略虚拟环境
+venv/
+env/
+ENV/
+.env
+
+# 忽略IDE文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 忽略系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 忽略数据集文件
+datasets/
+
+# 忽略备份文件
+*.bak
+*.backup
+
+# 忽略日志文件
+*.log
+
+# 忽略临时文件
+*.tmp
+*.temp
+
+# 忽略大文件（Vercel有大小限制）
+# 注意：模型文件需要保留，但Vercel有100MB限制
+# cat_dog_model.zip 93.3MB，在限制内
